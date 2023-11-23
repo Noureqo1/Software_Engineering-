@@ -14,4 +14,4 @@ principles.
 Programming language C++
 Gui using SFML library
 
-# THANKS FOR READING
+# Thanks for reading
