@@ -1,0 +1,107 @@
+﻿@page
+@model IndexModel
+
+@{
+}
+<!-- Set the Background image and make it fill the page -->
+ <style>
+    body {
+        background-image: url('https://img.lovepik.com/background/20211021/large/lovepik-a-driving-bus-background-image_400149197.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		padding: 0,0,0;
+		max-width: 100%;
+
+/*      
+        background-position: center center;
+        margin: 0;
+	    
+        height: 100vh;   */
+
+    }
+</style>
+
+<div style="height: 800px;">
+
+@* <header>
+<div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+            <h1 class="mb-3">Clothy</h1>
+                <h4 class="mb-3">Explore from various seller to find your desired product</h4>
+                <form method="get" action="/Explore">
+                    <button class="btn btn-outline-dark" type="submit">
+                        Full Site
+                    </button>
+                </form>
+        </div>
+    </div>
+</div>
+</header> *@
+
+
+
+
+
+
+
+        <div class="container d-flex align-items-center justify-content-center text-center h-100">
+            <div>
+                <h1 class="mb-3">BusTicket</h1>
+                <h4 class="mb-3">Get Your Trip Ticket From Us</h4>
+
+            <a class="btn btn-dark" asp-page="/Explore"><h2><span>TO</span>FULL<span>SITE</span></h2></a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    <style>
+
+    body {
+    background-color: #000;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    }
+
+    h1 {
+   
+        font-size: 100px;
+        font-weight: bold;
+        font-family: monospace;
+        letter-spacing: 7px;
+        cursor: pointer;
+    }
+    h2 {
+    color: hsl(0, 0%, 28%);
+    font-size: 50px;
+    font-weight: bold;
+    font-family: monospace;
+    letter-spacing: 7px;
+    cursor: pointer;
+    }
+
+    h2 span {
+    transition: 0.5s ease-out;
+    }
+    h2:hover span:nth-child(1) {
+    margin-right: 15px;
+    }
+    h2:hover span:nth-child(2) {
+    margin-left: 15px;
+    } 
+
+    h2:hover {
+        color: #fff;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+    }
+	</style>
+
+</div>
+
+       
