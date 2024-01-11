@@ -18,24 +18,39 @@
 <div class="mb-3">
     <form method="post">
         <label for="userType">User Type:</label><br>
-        <select id="userType" name="userType">
-            <option value="POD">POD</option>
-            <option value="SP">SP</option>
-            <option value="NB">NB</option>
+        <select id="userType" asp-for="@Model.satation.UserType" name="userType">
+            <option value="POD">POD            </option>
+            <option value="SP">SP              </option>
+            <option value="NB">NB              </option>
         </select><br>
 
+        <label for="Station">Station:</label><br>
+        <select id="Station" asp-for="@Model.satation.Station" name="Station">
+            <option value="Cairo">Cairo       </option>
+            <option value="Giza">Giza            </option>
+            <option value="Dkahlia">Dkahlia         </option>
+        </select><br>
 
-        <label for="age">Age:</label><br>
-        <input type="number" id="age" name="age"><br>
+        <label for="TripTime">Trip Time:</label><br>
+        <select id="TripTime" asp-for="@Model.satation.TripTime" name="TripTime">
+            <option value="45">45min           </option>
+            <option value="60">60min           </option>
+            <option value="75">75min           </option>
+        </select><br>
+
+        <label for="Price">Price: </label><br>
+        <select id="Price" asp-for="@Model.satation.Price" name="Price">
+            <option value="25">45min 25EGP     </option>
+            <option value="20">60min 20EGP     </option>
+            <option value="15">75min 15EGP     </option>
+        </select><br>
+
+        <label for="Age">Age:</label><br>
+        <input type="number" id="Age" asp-for="@Model.satation.Age" name="Age"><br>
         <br />
 
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success">Order Ticket</button>
     </form>
-
-    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-    {
-        <div>@Model.ErrorMessage</div>
-    }
 
 </div>
 

@@ -6,14 +6,19 @@ namespace SW.models
     [BindProperties(SupportsGet = true)]
     public class users
     {
-        [Required]
-        public required string ID { get; set; }
-        [Required]
-        [StringLength(25, MinimumLength = 3)]
-        public String? Email { get; set; }
-        public int? Password { get; internal set; }
-        public int? ConfirmPassword { get; internal set; }
-        public String? Name { get; internal set; }
-        public int? PhoneNumber { get; internal set; }
+        public users()
+        {
+           
+        }
+        [BindProperty]
+        public String Email { get; set; }
+        [BindProperty]
+        public int Password { get; set; }
+        [BindProperty]
+        public int ConfirmPassword { get; set; }
+        [BindProperty]
+        public String Name { get; set; } 
+        [BindProperty]
+        public int PhoneNumber { get; set; }
     }
 }

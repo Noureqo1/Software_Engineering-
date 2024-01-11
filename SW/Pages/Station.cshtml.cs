@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SW.models;
+using System.Data.SqlClient;
 
 namespace SW.Pages
 {
@@ -12,11 +14,8 @@ namespace SW.Pages
             _logger = logger;
         }
 
-        public string UserType { get; set; }
-        public int Age { get; set; }
-        public string ErrorMessage { get; set; }
-
-        public int priorty { get; set; }
+        [BindProperty]
+        public models.station satation { get; set; }
 
 
         public void OnGet()
@@ -24,41 +23,82 @@ namespace SW.Pages
 
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            UserType = Request.Form["userType"];
-
-            Age = Convert.ToInt32(Request.Form["age"]);
-            if (Age < 0)
+            if (Convert.ToInt32(satation.Age) < 0)
             {
-                ErrorMessage = "Age cannot be negative.";
-                return;
+                satation.ErrorMessage = "Age cannot be negative.";
+
             }
 
-            if (Age > 100)
+            if (Convert.ToInt32(satation.Age) > 100)
             {
-                ErrorMessage = "Age too large.";
-                return;
+                satation.ErrorMessage = "Age too large.";
             }
 
-            switch (UserType)
+            switch (satation.UserType)
             {
                 case "POD":
-                    priorty = 3;
+                    satation.priorty = 3;
                     break;
                 case "SP":
-                    priorty = 2;
+                    satation.priorty = 2;
                     break;
                 case "NP":
-                    priorty = 1;
-                    break;
-
-                default:
-                    ErrorMessage = "user type is invalid.";
+                    satation.priorty = 1;
                     break;
             }
-            Console.WriteLine(UserType);
-            Console.WriteLine(Age);
+
+            switch (satation.UserType)
+            {
+                case "POD":
+                    satation.Capacity = 10;
+                    break;
+                case "SP":
+                    satation.Capacity = 15;
+                    break;
+                case "NP":
+                    satation.Capacity = 25;
+                    break;
+            }
+
+            Console.WriteLine(satation.UserType);
+            Console.WriteLine(satation.Age);
+            Console.WriteLine("Price");
+            Console.WriteLine(satation.Price);
+            Console.WriteLine(satation.Station);
+            Console.WriteLine("Capacity");
+            Console.WriteLine(satation.Capacity);
+            Console.WriteLine(satation.TripTime);
+
+            string connectionString = "Data Source=LAPTOP-OH72TN5U;Initial Catalog=SW;Integrated Security=True";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                // Insert the user data into the database
+                string query = $"insert into Station (UserType, Age, priorty , Price, Station ,Capacity,TripTime) " +
+                $"values('{satation.UserType}', '{satation.Age}', '{satation.priorty}, '{satation.Price}', '{satation.Station}', '{satation.Capacity}', '{satation.TripTime}')";
+                SqlCommand command = new SqlCommand(query, con);
+                try
+                {
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    return RedirectToPage("/Thanks");
+
+
+                }
+                catch (SqlException err)
+                {
+                    Console.WriteLine(err.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+                return Page();
+
+            }
+
+
         }
     }
 }

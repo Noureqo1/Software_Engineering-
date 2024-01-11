@@ -7,6 +7,6 @@ namespace SW.Pages
 {
     public class IndexModel : PageModel
     {
-              
+       
     }
 }
